@@ -10,70 +10,81 @@
 
 *{
   font-family: 'Times New Roman', Times, serif;
+  /* color: whitesmoke; */
 }
 
-input, button {
+body {
+  background: linear-gradient(to bottom right, #534379, #561139);
+}
+
+input, button, a {
   all: unset;
 }
 
-
-body {
-  background: linear-gradient(307deg, #3c3856, #88719d);
-  background-size: 400% 400%;
-
-  -webkit-animation: AnimationName 7s ease infinite;
-  -moz-animation: AnimationName 7s ease infinite;
-  animation: AnimationName 7s ease infinite;
-}
-
-@-webkit-keyframes AnimationName {
-  0%{background-position:31% 0%}
-  50%{background-position:70% 100%}
-  100%{background-position:31% 0%}
-}
-@-moz-keyframes AnimationName {
-  0%{background-position:31% 0%}
-  50%{background-position:70% 100%}
-  100%{background-position:31% 0%}
-}
-@keyframes AnimationName {
-  0%{background-position:31% 0%}
-  50%{background-position:70% 100%}
-  100%{background-position:31% 0%}
-}
-
-.login-container {
-    width: 40%;
-    height: 100%;
-    margin: 30vh auto;
-    /* padding: 20px; */
-    border: 1px solid #ccc;
-  }
-  
 h1 {
   font-family: 'Times New Roman', Times, serif;
   color:aliceblue;
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 10%;
 }
-.loginElemets{
-  display: grid;
-  width: 0 auto;
-  margin: 1%;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: repeat(4, 1fr);
 
+
+.login-container {
+    width: 40%;
+    margin: 25vh auto;
+    padding: 2% 0 2% 0;
+    border: 1px solid #ccc;
+  }
+  
+
+.loginElemets{
+  margin: 1% 5%;
+  /* padding: 3% 3%; */
+  /* padding: 3% 0%; */
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(3, 1fr);
+
+}
+
+.loginElemets input{
+  padding-left: 1%;
+  margin-bottom: 3%;
+
+}
+
+.loginElemets p{
+  margin: 0;
+  padding: 0;
+  color: aliceblue;
+}
+.loginElemets p a{
+  color: rgb(206, 208, 214);
 }
 input {
   width: 100%;
-  grid-column: span 2;
-  padding-left: 0%;
+  /* padding-left: 1%; */
   background-color: #ddcce7;
   display: block;
-  margin-bottom: 10px;
+  
+}
+.loginBtn{
+  margin: 3% 0;
 }
 
-/* .btn-primary{
+
+  
+
+/* Disable bootstrap functions here.  */
+
+.btn{
+  padding: 0;
+  
+}
+.btn:hover{
+  background-color: red;
+  color: white;
+}
+.btn-primary{
   background-color: #88719d;
   border-color: #88719d;
   width: 100%;
@@ -82,43 +93,8 @@ input {
 .btn-primary:hover{
   background-color: #a189b8;
   border-color: #88719d;
-} */
-  
-
-/* .loginButtons{
-  display: grid;
-  width: 100%;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(2, 1fr);
-
-} */
-
-
-.buttons{
-  text-align: center;
-}
-.loginBtn{
-  grid-column: span 2;
-  
 }
 
-.forgotPasswordBtn{
-  margin: 0 5px 0 0;
-  grid-column: span 1;
-}
-
-.registerBtn{
-  /* margin-left: 10px; */
-  grid-column: span 1;
-}
-
-.btn{
-  padding: 0;
-  /* padding-left: 5px; */
-}
-  
-a {
-  color:aliceblue;
-  text-decoration: none;
-  text-align: center;
+.btn-primary.focus, .btn-primary:focus {
+	box-shadow: none;
 }
