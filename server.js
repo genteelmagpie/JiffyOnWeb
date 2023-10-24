@@ -9,7 +9,7 @@ const firebaseConfig = require('./secrets/firebaseConfig'); // Path to your Fire
 // Using CommonJS syntax to import necessary functions
 const { getAuth, createUserWithEmailAndPassword, sendEmailVerification, signInWithEmailAndPassword, sendPasswordResetEmail, signOut } = require('firebase/auth');
 const { getDatabase, ref, set } = require('firebase/database');
-
+const { formatDateTime, calculateTimeDifferenceInSeconds, findCategory } = require('./importantFunctions.js');
 
 
 
@@ -40,6 +40,11 @@ app.get('/register', (req, res) => {
 app.get('/forgotpassword', (req, res) => {
   // Display the login form
   res.sendFile(__dirname + '/forgotPassword.html');
+});
+
+app.get('/timelogger', (req, res) => {
+  // Display the login form
+  res.sendFile(__dirname + '/timeLogger.html');
 });
 
 app.get('/secrets', (req, res) => {
@@ -145,6 +150,18 @@ app.post('/logout', (req, res) => {
   });
 });
 
+app.post('/timelogger', (req, res) => {
+  filePath = "D:\\GM\\Coding\\PythonProjects\\Jiffy\\assets\\subjects\\sub.json";
+  console.log(req.body)
+  console.log(findCategory(req.body.subjectName, filePath))
+  console.log(" One done.")
+  console.log(calculateTimeDifferenceInSeconds(req.body.startingTime, req.body.endTime))
+  console.log("Two Done.")
+  console.log(formatDateTime(req.body.startingTime))
+  console.log(formatDateTime(req.body.endTime))
+  console.log("Three Done.")
+  res.send(" We got it.")
+});
 
 auth.onAuthStateChanged((user) => {
   if (user) {
