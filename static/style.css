@@ -10,6 +10,7 @@
 
 *{
   font-family: 'Times New Roman', Times, serif;
+  font-size: 30px;
   /* color: whitesmoke; */
 }
 
@@ -56,9 +57,14 @@ h1 {
   margin: 0;
   padding: 0;
   color: aliceblue;
+  font-size: 0.75rem;
 }
 .loginElemets p a{
   color: rgb(206, 208, 214);
+}
+.loginElemets p a:hover{
+  color: white;
+  text-decoration: underline;
 }
 input {
   width: 100%;
@@ -67,22 +73,20 @@ input {
   display: block;
   
 }
-.loginBtn{
-  margin: 3% 0;
-}
-
-
   
 
 /* Disable bootstrap functions here.  */
 
 .btn{
   padding: 0;
-  
+  margin: 3% 0 3% 0;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.15), 0 6px 20px 0 rgba(0,0,0,0.19);
 }
+
 .btn:hover{
   background-color: red;
-  color: white;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.15), 0 6px 20px 0 rgba(0,0,0,0.19);
+  /* color: white; */
 }
 .btn-primary{
   background-color: #88719d;
@@ -96,5 +100,24 @@ input {
 }
 
 .btn-primary.focus, .btn-primary:focus {
-	box-shadow: none;
+
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.15), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+.btn-primary:not(:disabled):not(.disabled).active, .btn-primary:not(:disabled):not(.disabled):active, .show > .btn-primary.dropdown-toggle {
+	/* color: #df1111; */
+	background-color: #88719d;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.15), 0 6px 20px 0 rgba(0,0,0,0.19);
+
+
+	/* border-color: #fff; */
+	/* box-shadow: 0 0 0 .2rem rgba(194, 213, 234, 0.5); */
+
+}
+
+.btn-primary:not(:disabled):not(.disabled).active:focus, .btn-primary:not(:disabled):not(.disabled):active:focus, .show > .btn-primary.dropdown-toggle:focus {
+	/* box-shadow: 0 0 0 .2rem rgba(194, 213, 234, 0.5); */
+  border: none;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.15), 0 6px 20px 0 rgba(0,0,0,0.19);
+
 }
