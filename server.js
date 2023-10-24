@@ -1,3 +1,5 @@
+// Import Statements? - Sorta
+
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
@@ -5,18 +7,25 @@ const path = require('path'); // Import the 'path' module to handle file paths.
 const { initializeApp } = require('firebase/app'); // Import the initializeApp function
 const firebaseConfig = require('./secrets/firebaseConfig'); // Path to your Firebase config file
 // Using CommonJS syntax to import necessary functions
-const { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, getIdToken } = require('firebase/auth');
+const { getAuth, createUserWithEmailAndPassword, sendEmailVerification, signInWithEmailAndPassword, sendPasswordResetEmail, signOut } = require('firebase/auth');
+const { getDatabase, ref, set } = require('firebase/database');
+
+
+
 
 // Initialize Firebase
 const firebaseApp = initializeApp(firebaseConfig);
 
 // Initialize Firebase Authentication
 const auth = getAuth(firebaseApp);
+const db = getDatabase(firebaseApp);
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // Define the static file directory (public) before defining routes.
 app.use(express.static(path.join(__dirname, '/public')));
+
+// THE GETTING OF WEB PAGES 
 
 app.get('/', (req, res) => {
   // Display the login form
@@ -33,6 +42,25 @@ app.get('/forgotpassword', (req, res) => {
   res.sendFile(__dirname + '/forgotPassword.html');
 });
 
+app.get('/secrets', (req, res) => {
+
+  const user = auth.currentUser; // Check if the user is logged in
+
+  if (user) {
+    // User is signed in, serve the 'secrets.html' page
+    res.sendFile(__dirname + '/secrets.html');
+    console.log(user)
+    console.log(user.uid)
+    writeUserData(user.uid, user.email)
+  } else {
+    // User is signed out, you can handle this as needed, e.g., redirect to the login page
+    res.redirect('/');
+  }
+});
+
+
+
+// THE POSTING ON WEB PAGES 
 
 app.post('/register', (req, res) => {
   // Access the form data
@@ -43,20 +71,32 @@ app.post('/register', (req, res) => {
   .then((userCredential) => {
     // User signed up successfully
     const user = userCredential.user;
-    // console.log(user)
+    console.log(user)
     console.log(" Creation of the new user is successful.")
+
+    sendEmailVerification(user)
+    .then(() => {
+      console.log(" Email verification sent.")
+    })
+    .catch((error) => {
+      console.error('Error sending email verification:', error);
+    });
+
+    // Send an alert to the client and stay on the current page
+    res.send('<script>alert("Account Creation Successful. Welcome!"); window.location.href = "/";</script>');
   })
   .catch((error) => {
     const errorCode = error.code;
     const errorMessage = error.message;
     console.log(errorMessage)
     console.log(error)
-
   });
+
+
 
 });
 
-app.post('/login', async (req, res) => {
+app.post('/login', (req, res) => {
 
   const email = req.body.email;
   const password = req.body.password;
@@ -67,57 +107,64 @@ app.post('/login', async (req, res) => {
       const user = userCredential.user;
       // console.log(user)
       console.log("Login of the user is successful.");
-      return true;
+      res.redirect('/secrets')
     })
     .catch((error) => {
       const errorCode = error.code;
       const errorMessage = error.message;
       console.log(errorMessage);
       console.log(error);
-      return false;
     });
 });
 
+app.post('/forgotpassword', (req, res) => {
+  const email = req.body.email;
+  console.log(email);
+  sendPasswordResetEmail(auth, email)
+  .then(() => {
+    console.log(" Reset Email has been sent.")
+    res.send('<script>alert("Reset Email has been sent!"); window.location.href = "/";</script>');
+  })
+  .catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    console.log(" Reset Email could not be sent.")
+    console.log(error)
+    // res.send('<script>alert("Sign Out Failed.!"); window.location.href = "/";</script>');
+    res.send('<script>alert("Reset Email could not be sent!")</script>');
+    
+  });
+});
+
+app.post('/logout', (req, res) => {
+
+  signOut(auth).then(() => {
+    res.redirect("/")
+  }).catch((error) => {
+    res.send('<script>alert("Sign Out Failed.!"); window.location.href = "/";</script>');
+  });
+});
+
+
+auth.onAuthStateChanged((user) => {
+  if (user) {
+    // User is signed in, you can redirect them to 'secrets.html' or do other actions.
+    console.log('User is signed in');
+    // You can also use `res.redirect('/secrets')` here if needed.
+  } else {
+    // User is signed out
+    console.log('User is signed out');
+  }
+});
+
+function writeUserData(userId, email) {
+  set(ref(db, 'users/' + userId), {
+    email: email,
+  });
+  console.log(" Wrote the data.")
+}
 
 
 app.listen(3000, () => {
   console.log('Server is running on port 3000');
 });
-
-
-
-
-
-
-
-
-
-
-
-// var firebase = window.firebase;
-
-// // Initialize Firebase
-// firebase.initializeApp({
-//   // Your Firebase configuration goes here
-// });
-
-// // Get the login button
-// var loginButton = document.getElementById('login-button');
-
-// // Add an event listener to the login button
-// loginButton.addEventListener('click', function() {
-//   // Get the email and password from the input fields
-//   var email = document.getElementById('email').value;
-//   var password = document.getElementById('password').value;
-
-//   // Sign in the user with email and password
-//   firebase.auth().signInWithEmailAndPassword(email, password).then(function() {
-//     // The user has successfully signed in
-//     // Redirect the user to the main page of your application
-//     window.location.href = 'main.html';
-//   }).catch(function(error) {
-//     // The user failed to sign in
-//     // Show an error message to the user
-//     alert(error.message);
-//   });
-// });

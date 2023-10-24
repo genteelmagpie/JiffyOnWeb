@@ -8,7 +8,7 @@
 <body>
   <div class="login-container">
     <h1>Jiffy: Registration</h1>
-    <form action="/register" method="POST"> <!-- Specify the action and method attributes for the form -->
+    <form action="/register" method="POST" autocomplete="off"> <!-- Specify the action and method attributes for the form -->
       <div class = "loginElemets">
         <input type="email" name = "email" id="email" placeholder="Email">
         <input type="password" name = "password" id="password" placeholder="Password">
@@ -17,13 +17,8 @@
         <div class = "loginButtons">
           <p> To Sign In, Click Here: <a href = "/"> Click Here </a> </p>
         </div>
-
-        
       </div>
-
+    </form>
   </div>
-
-  <!-- <script src="https://www.gstatic.com/firebasejs/latest/firebase.js"></script> -->
-  <script src="script.js"></script>
 </body>
 </html>
