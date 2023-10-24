@@ -1,0 +1,29 @@
+{
+    "rules": {
+      "users": {	
+        "$uid" : {
+            ".read": "$uid === auth.uid",
+            ".write": "$uid === auth.uid"
+        }		
+      },	
+      "jiffy": {	
+        "$uid" : {
+          ".read": "$uid === auth.uid",
+          ".write": "$uid === auth.uid"
+        }		
+      },
+      "studyLogs": {	
+        "$uid" : {
+          ".read": "$uid === auth.uid",
+          ".write": "$uid === auth.uid"
+        }
+      },
+      "streaks": {	
+        "$uid" : {
+          ".read": "$uid === auth.uid",
+          ".write": "$uid === auth.uid"
+        }	
+      }	    
+    }
+}
+  
