@@ -1,0 +1,124 @@
+* {
+  /* Sets or rather resets any predefined values a browser might apply. */
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-decoration: none;
+  box-sizing: border-box;
+  /* font-family: sans-serif; */
+}
+
+*{
+  font-family: 'Times New Roman', Times, serif;
+}
+
+input, button {
+  all: unset;
+}
+
+
+body {
+  background: linear-gradient(307deg, #3c3856, #88719d);
+  background-size: 400% 400%;
+
+  -webkit-animation: AnimationName 7s ease infinite;
+  -moz-animation: AnimationName 7s ease infinite;
+  animation: AnimationName 7s ease infinite;
+}
+
+@-webkit-keyframes AnimationName {
+  0%{background-position:31% 0%}
+  50%{background-position:70% 100%}
+  100%{background-position:31% 0%}
+}
+@-moz-keyframes AnimationName {
+  0%{background-position:31% 0%}
+  50%{background-position:70% 100%}
+  100%{background-position:31% 0%}
+}
+@keyframes AnimationName {
+  0%{background-position:31% 0%}
+  50%{background-position:70% 100%}
+  100%{background-position:31% 0%}
+}
+
+.login-container {
+    width: 40%;
+    height: 100%;
+    margin: 30vh auto;
+    /* padding: 20px; */
+    border: 1px solid #ccc;
+  }
+  
+h1 {
+  font-family: 'Times New Roman', Times, serif;
+  color:aliceblue;
+  text-align: center;
+  margin-bottom: 20px;
+}
+.loginElemets{
+  display: grid;
+  width: 0 auto;
+  margin: 1%;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: repeat(4, 1fr);
+
+}
+input {
+  width: 100%;
+  grid-column: span 2;
+  padding-left: 0%;
+  background-color: #ddcce7;
+  display: block;
+  margin-bottom: 10px;
+}
+
+/* .btn-primary{
+  background-color: #88719d;
+  border-color: #88719d;
+  width: 100%;
+}
+
+.btn-primary:hover{
+  background-color: #a189b8;
+  border-color: #88719d;
+} */
+  
+
+/* .loginButtons{
+  display: grid;
+  width: 100%;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+
+} */
+
+
+.buttons{
+  text-align: center;
+}
+.loginBtn{
+  grid-column: span 2;
+  
+}
+
+.forgotPasswordBtn{
+  margin: 0 5px 0 0;
+  grid-column: span 1;
+}
+
+.registerBtn{
+  /* margin-left: 10px; */
+  grid-column: span 1;
+}
+
+.btn{
+  padding: 0;
+  /* padding-left: 5px; */
+}
+  
+a {
+  color:aliceblue;
+  text-decoration: none;
+  text-align: center;
+}

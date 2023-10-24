@@ -1,0 +1,45 @@
+* {
+    /* Sets or rather resets any predefined values a browser might apply. */
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-decoration: none;
+    box-sizing: border-box;
+    /* font-family: sans-serif; */
+  }
+  
+*{
+font-family: 'Times New Roman', Times, serif;
+}
+
+.container {
+    width: 90%;
+    /* margin: 33vh auto; */
+    margin: 100px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    background-color: aqua;
+}
+
+.innerDivs{
+    width: 50%;
+    margin: auto;
+    margin-bottom: 50px;
+    background-color: red;
+    padding-right: 100px;
+}
+
+.innerDivsInner{
+    width: 50%;
+    /* padding-right: 100px; */
+
+    margin: auto;
+    background-color: rgb(133, 116, 183);
+}
+
+.grandSon{
+    width: 50%;
+    margin: 0 auto;
+    text-align: center;
+    background-color: rgb(219, 211, 244);
+}
