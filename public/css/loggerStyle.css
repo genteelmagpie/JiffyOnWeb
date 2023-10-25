@@ -26,6 +26,7 @@ body {
 
 h1{
     text-align: center;
+    font-weight: 800;
     padding-bottom: 3%;
 }
 #startingTime, #endTime, #subjectName, #loginButtons{

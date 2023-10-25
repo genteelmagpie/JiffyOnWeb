@@ -1,4 +1,5 @@
 const fs = require('fs');
+const path = require('path');
 
 function formatDateTime(dateTimeString) {
     const date = new Date(dateTimeString);
@@ -76,8 +77,10 @@ function toTitleCase(str) {
 
 function dataSorter(object){
 
-  filePath = "D:\\GM\\Coding\\PythonProjects\\Jiffy\\assets\\subjects\\sub.json";
-  subject = toTitleCase(object.subjectName);
+  const filePath = path.join(__dirname, 'public', 'assets', 'sub.json');
+  const subjectName = object.subjectName.trim();
+
+  subject = toTitleCase(subjectName);
   actualDuration = calculateTimeDifferenceInSeconds(object.startingTime, object.endTime);
   duration = actualDuration;
   startTime = formatDateTime(object.startingTime);

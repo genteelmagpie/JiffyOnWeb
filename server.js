@@ -60,23 +60,14 @@ app.get('/success', (req, res) => {
   res.sendFile(__dirname + '/success.html');
 });
 
-app.get('/secrets', (req, res) => {
+app.get('/logout', (req, res) => {
 
-  const user = auth.currentUser; // Check if the user is logged in
-
-  if (user) {
-    // User is signed in, serve the 'secrets.html' page
-    res.sendFile(__dirname + '/secrets.html');
-    // console.log(user)
-    // console.log(user.uid)
-    // writeUserData(user.uid, user.email)
-  } else {
-    // User is signed out, you can handle this as needed, e.g., redirect to the login page
-    res.redirect('/');
-  }
+  signOut(auth).then(() => {
+    res.redirect("/")
+  }).catch((error) => {
+    res.send('<script>alert("Sign Out Failed.!"); window.location.href = "/";</script>');
+  });
 });
-
-
 
 // THE POSTING ON WEB PAGES 
 
@@ -125,7 +116,7 @@ app.post('/login', (req, res) => {
       const user = userCredential.user;
       // console.log(user)
       console.log("Login of the user is successful.");
-      res.redirect('/secrets')
+      res.redirect('/timelogger')
     })
     .catch((error) => {
       const errorCode = error.code;
@@ -162,18 +153,50 @@ app.post('/logout', (req, res) => {
   });
 });
 
-// app.post('/timelogger', (req, res) => {
-  
-//   const obj = dataSorter(req.body)
-//   const stuts = DatabaseWrite(obj)
-//   console.log(stuts)
-//   if (stuts === true){
-//     res.send('<script>showSuccessMessageAndRedirect();</script>');
-//   }else{
-//     console.log(" Failed to successfully post your data.")
-//   }
-// });
 
+
+app.post('/timelogger', (req, res) => {
+  const obj = dataSorter(req.body);
+
+  DatabaseWrite(obj)
+    .then((stuts) => {
+      if (stuts === true) {
+        // Redirect to a success page
+        res.redirect('/success');
+      } else {
+        console.log("Failed to successfully post your data.");
+        // Handle the error as needed
+        res.status(500).send("Failed to post data"); // Respond with an error message
+      }
+    })
+    .catch((error) => {
+      console.error("Failed to successfully post your data:", error);
+      // Handle the error as needed
+      res.status(500).send("Failed to post data"); // Respond with an error message
+    });
+});
+
+
+auth.onAuthStateChanged((user) => {
+  if (user) {
+    console.log('User is signed in');
+
+  } else {
+    // User is signed out
+    console.log('User is signed out');
+  }
+});
+
+
+
+// DATABASE MANAGEMENT START
+
+function writeUserData(userId, email) {
+  set(ref(db, 'users/' + userId), {
+    email: email,
+  });
+  console.log(" Wrote the data.")
+}
 
 function DatabaseWrite(payload) {
   return new Promise((resolve, reject) => {
@@ -197,90 +220,6 @@ function DatabaseWrite(payload) {
     }
   });
 }
-
-app.post('/timelogger', (req, res) => {
-  const obj = dataSorter(req.body);
-
-  DatabaseWrite(obj)
-    .then((stuts) => {
-      console.log(stuts);
-      if (stuts === true) {
-        res.send('<script>showSuccessMessageAndRedirect();</script>');
-      } else {
-        console.log("Failed to successfully post your data.");
-        // Handle the error as needed
-      }
-    })
-    .catch((error) => {
-      console.error("Failed to successfully post your data:", error);
-      // Handle the error as needed
-    });
-});
-
-
-auth.onAuthStateChanged((user) => {
-  if (user) {
-    // User is signed in, you can redirect them to 'secrets.html' or do other actions.
-    console.log('User is signed in');
-    // You can also use `res.redirect('/secrets')` here if needed.
-  } else {
-    // User is signed out
-    console.log('User is signed out');
-  }
-});
-
-
-
-// DATABASE MANAGEMENT START
-
-function writeUserData(userId, email) {
-  set(ref(db, 'users/' + userId), {
-    email: email,
-  });
-  console.log(" Wrote the data.")
-}
-
-// function DatabaseWrite(payload){
-  
-//   const user = auth.currentUser; // Check if the user is logged in
-//   if (user) {
-//     // User is signed in, serve the 'secrets.html' page
-//     const studyLogListRef = ref(db, `studyLogs/${user.uid}`);
-//     const newPostRef = push(studyLogListRef)
-//     set(newPostRef, payload)
-//     .then(() => {
-//       console.log('Data updated successfully');
-//       return true;
-//     })
-//     .catch((error) => {
-//       console.error('Data update error:', error);
-//       return false;
-//     });
-// }};
-
-
-// function DatabaseWrite(payload) {
-//   return new Promise((resolve, reject) => {
-//     const user = auth.currentUser; // Check if the user is logged in
-//     if (user) {
-//       const studyLogListRef = ref(db, `studyLogs/${user.uid}`);
-//       const newPostRef = push(studyLogListRef);
-
-//       set(newPostRef, payload)
-//         .then(() => {
-//           console.log('Data updated successfully');
-//           resolve(true); // Resolve the Promise with true on success
-//         })
-//         .catch((error) => {
-//           console.error('Data update error:', error);
-//           reject(false); // Reject the Promise with false on error
-//         });
-//     } else {
-//       console.log("User is not signed in.");
-//       reject(false); // Reject the Promise if the user is not signed in
-//     }
-//   });
-// }
 
 
 
