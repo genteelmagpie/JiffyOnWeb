@@ -30,30 +30,75 @@ function calculateTimeDifferenceInSeconds(startingTime, endTime) {
 
 
 function findCategory(subjectName, filePath) {
-    // Read JSON data from the specified file
-    const jsonData = JSON.parse(fs.readFileSync(filePath, 'utf-8'));
-    const subjects = jsonData.subjects;
-    const projects = jsonData.projects;
+  // Read JSON data from the specified file
+  const jsonData = JSON.parse(fs.readFileSync(filePath, 'utf-8'));
+  const subjects = jsonData.subjects;
+  const projects = jsonData.projects;
 
-    for (const project in projects) {
-        if (projects[project].includes(subjectName)) {
-        return {
-            subject: Object.keys(subjects).find(key => subjects[key].includes(subjectName)),
-            project: project,
-        };
-        }
-    }
+  // Convert the subjectName to lowercase for case-insensitive comparison
+  subjectName = subjectName.toLowerCase();
 
-    // If the subjectName is not found in any project, return "Not found" or handle as needed
-    return {
-        subject: "Not found",
-        project: "Not found",
-    };
+  // Initialize response
+  let response = {
+      subjectCatg: "Not found",
+      project: "Not found",
+  };
+
+  // Check if the subjectName exists in subjects
+  for (const subjectCategory in subjects) {
+      const subjectNames = subjects[subjectCategory].split(', ').map(name => name.toLowerCase());
+
+      if (subjectNames.includes(subjectName)) {
+          response.subjectCatg = subjectCategory;
+          break;
+      }
+  }
+
+  // Check if the subjectName exists in projects
+  for (const project in projects) {
+      const projectNames = projects[project].split(', ').map(name => name.toLowerCase());
+
+      if (projectNames.includes(subjectName)) {
+          response.project = project;
+          break;
+      }
+  }
+
+  return response;
 }
 
 
+function toTitleCase(str) {
+  return str.toLowerCase().replace(/\b\w/g, function (char) {
+      return char.toUpperCase();
+  });
+}
+
+function dataSorter(object){
+
+  filePath = "D:\\GM\\Coding\\PythonProjects\\Jiffy\\assets\\subjects\\sub.json";
+  subject = toTitleCase(object.subjectName);
+  actualDuration = calculateTimeDifferenceInSeconds(object.startingTime, object.endTime);
+  duration = actualDuration;
+  startTime = formatDateTime(object.startingTime);
+  endTime = formatDateTime(object.endTime);
+  resp = findCategory(subject, filePath);
+  subCat = resp.subjectCatg;
+  project = resp.project;
+  const newObject = {
+    actualDuration: actualDuration,
+    duration: duration,
+    endTime: endTime,
+    project: project,
+    startTime: startTime,
+    subCat: subCat,
+    subject: subject,
+  }
+
+  return newObject;
+}
+
 module.exports = {
-  formatDateTime,
-  calculateTimeDifferenceInSeconds,
-  findCategory,
+  toTitleCase,
+  dataSorter
 };

@@ -45,6 +45,20 @@ h1{
 
   }
 
+.upperContainer{
+    position:relative;
+    width: 40%;
+    margin: -60vh auto;
+    padding: 2% 0 2% 0;
+    /* border: 1px solid #000000; */
+    background-color:rgba(95, 87, 87, .00);
+
+}
+
+.blur-div {
+    filter: blur(13px); /* Adjust the blur radius as needed */
+}
+  
 
 .label{
     text-align: center;
@@ -58,12 +72,14 @@ h1{
 
 #successfulMsg{
     text-align: center;
-    margin-top: 5%;
+    /* margin-top: 5%; */
+    padding: 0;
+    margin: 0;
     text-decoration: underline;
-    color: rgb(255, 224, 220);
+    color: rgb(15, 180, 0);
     display: block;
-    font-size: 1.5rem;
-    font-weight: 700;
+    font-size: 3rem;
+    font-weight: 800;
 }
 
 .form-cntrl{

@@ -1,0 +1,135 @@
+UserImpl{
+    providerId: 'firebase',
+    proactiveRefresh: ProactiveRefresh {
+      user: [Circular *1],
+      isRunning: false,
+      timerId: null,
+      errorBackoff: 30000
+    },
+    reloadUserInfo: {
+      localId: 'RR87yzAz4jSBNRshaC2yXFxNdjm2',
+      email: 'genteelmagpie@gmail.com',
+      passwordHash: 'UkVEQUNURUQ=',
+      emailVerified: true,
+      passwordUpdatedAt: 1698172567940,
+      providerUserInfo: [ [Object] ],
+      validSince: '1698172567',
+      lastLoginAt: '1698238632980',
+      createdAt: '1698171255381',
+      lastRefreshAt: '2023-10-25T12:57:12.980Z'
+    },
+    reloadListener: null,
+    uid: 'RR87yzAz4jSBNRshaC2yXFxNdjm2',
+    auth: <ref *2> AuthImpl {
+      app: FirebaseAppImpl {
+        _isDeleted: false,
+        _options: [Object],
+        _config: [Object],
+        _name: '[DEFAULT]',
+        _automaticDataCollectionEnabled: false,
+        _container: [ComponentContainer]
+      },
+      heartbeatServiceProvider: Provider {
+        name: 'heartbeat',
+        container: [ComponentContainer],
+        component: [Component],
+        instances: [Map],
+        instancesDeferred: Map(0) {},
+        instancesOptions: [Map],
+        onInitCallbacks: Map(0) {}
+      },
+      appCheckServiceProvider: Provider {
+        name: 'app-check-internal',
+        container: [ComponentContainer],
+        component: null,
+        instances: Map(0) {},
+        instancesDeferred: [Map],
+        instancesOptions: Map(0) {},
+        onInitCallbacks: Map(0) {}
+      },
+      config: {
+        apiKey: 'AIzaSyC-CC1LUMEGSjLuZt7AaDiZLCWly735ohc',
+        authDomain: 'testjiffyone.firebaseapp.com',
+        clientPlatform: 'Node',
+        apiHost: 'identitytoolkit.googleapis.com',
+        tokenApiHost: 'securetoken.googleapis.com',
+        apiScheme: 'https',
+        sdkClientVersion: 'Node/JsCore/10.5.0/FirebaseCore-web'
+      },
+      currentUser: [Circular *1],
+      emulatorConfig: null,
+      operations: Promise { undefined },
+      authStateSubscription: Subscription {
+        auth: [Circular *2],
+        observer: [ObserverProxy],
+        addObserver: [Function: bound ]
+      },
+      idTokenSubscription: Subscription {
+        auth: [Circular *2],
+        observer: [ObserverProxy],
+        addObserver: [Function: bound ]
+      },
+      beforeStateQueue: AuthMiddlewareQueue { auth: [Circular *2], queue: [] },
+      redirectUser: null,
+      isProactiveRefreshEnabled: false,
+      EXPECTED_PASSWORD_POLICY_SCHEMA_VERSION: 1,
+      _canInitEmulator: false,
+      _isInitialized: true,
+      _deleted: false,
+      _initializationPromise: Promise { undefined },
+      _popupRedirectResolver: null,
+      _errorFactory: ErrorFactory {
+        service: 'auth',
+        serviceName: 'Firebase',
+        errors: [Object]
+      },
+      _agentRecaptchaConfig: null,
+      _tenantRecaptchaConfigs: {},
+      _projectPasswordPolicy: null,
+      _tenantPasswordPolicies: {},
+      lastNotifiedUid: 'RR87yzAz4jSBNRshaC2yXFxNdjm2',
+      languageCode: null,
+      tenantId: null,
+      settings: { appVerificationDisabledForTesting: false },
+      frameworks: [],
+      name: '[DEFAULT]',
+      clientVersion: 'Node/JsCore/10.5.0/FirebaseCore-web',
+      persistenceManager: PersistenceUserManager {
+        persistence: [InMemoryPersistence],
+        auth: [Circular *2],
+        userKey: 'authUser',
+        fullUserKey: 'firebase:authUser:AIzaSyC-CC1LUMEGSjLuZt7AaDiZLCWly735ohc:[DEFAULT]',
+        fullPersistenceKey: 'firebase:persistence:AIzaSyC-CC1LUMEGSjLuZt7AaDiZLCWly735ohc:[DEFAULT]',
+        boundEventHandler: [Function: bound ]
+      }
+    },
+    stsTokenManager: StsTokenManager {
+      refreshToken: 'AMf-vBw3msI_30hONNv36bMVMRKFRPCLKr_8d9Pvo3xlohQiq4vSTTHvKsIsVuOMA7O-qBcuf-Gs63wsG7S5i2Jd1w2HIbxfzPIBzAAWhKyTY0WTJIAwqQOkqQ3M-s6VrS7To0B_eG3Yc6Xw62551TKcVwgdC__-ZVREdcaGrWNz_Rh5zk4Gh0wmW1Rf4RCVn4Fm5JbgBldomGWbwGtQY9EMZXEge1NL_Q',
+      accessToken: 'eyJhbGciOiJSUzI1NiIsImtpZCI6IjAzZDA3YmJjM2Q3NWM2OTQyNzUxMGY2MTc0ZWIyZjE2NTQ3ZDRhN2QiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vdGVzdGppZmZ5b25lIiwiYXVkIjoidGVzdGppZmZ5b25lIiwiYXV0aF90aW1lIjoxNjk4MjM4NjMyLCJ1c2VyX2lkIjoiUlI4N3l6QXo0alNCTlJzaGFDMnlYRnhOZGptMiIsInN1YiI6IlJSODd5ekF6NGpTQk5Sc2hhQzJ5WEZ4TmRqbTIiLCJpYXQiOjE2OTgyMzg2MzIsImV4cCI6MTY5ODI0MjIzMiwiZW1haWwiOiJnZW50ZWVsbWFncGllQGdtYWlsLmNvbSIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJmaXJlYmFzZSI6eyJpZGVudGl0aWVzIjp7ImVtYWlsIjpbImdlbnRlZWxtYWdwaWVAZ21haWwuY29tIl19LCJzaWduX2luX3Byb3ZpZGVyIjoicGFzc3dvcmQifX0.GDEGIKMnJgMtdil8IKBvzfQBkkGWIX6Jx9xeyfaT0ETudKuV0a2htyL_r5l99EII1E5yfsiMnFo7TKE0ocQDUwXi4secxtN3xqQIhKIuhD-qv8RtoMFguP_zrmUg7OVktdQXZMprbRlDzknTR8hcKXA-Y_5f549HKviSfpRumRZqrMHf3vjHayZPalBoC333rxadGBaE-XIghO9CVyBwNbob0g3WhcaYUzLc3jORk3XfyVRvd6ud272PNbUHD6ZM40YXRbBIArj_5Uapfps9PhMJT_PkoardK4nR2vyshPX0kEiTECQxulOUVf03ErClfTgoXuWzKvcw2M9PI_a0EQ',
+      expirationTime: 1698242232458
+    },
+    accessToken: 'eyJhbGciOiJSUzI1NiIsImtpZCI6IjAzZDA3YmJjM2Q3NWM2OTQyNzUxMGY2MTc0ZWIyZjE2NTQ3ZDRhN2QiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vdGVzdGppZmZ5b25lIiwiYXVkIjoidGVzdGppZmZ5b25lIiwiYXV0aF90aW1lIjoxNjk4MjM4NjMyLCJ1c2VyX2lkIjoiUlI4N3l6QXo0alNCTlJzaGFDMnlYRnhOZGptMiIsInN1YiI6IlJSODd5ekF6NGpTQk5Sc2hhQzJ5WEZ4TmRqbTIiLCJpYXQiOjE2OTgyMzg2MzIsImV4cCI6MTY5ODI0MjIzMiwiZW1haWwiOiJnZW50ZWVsbWFncGllQGdtYWlsLmNvbSIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJmaXJlYmFzZSI6eyJpZGVudGl0aWVzIjp7ImVtYWlsIjpbImdlbnRlZWxtYWdwaWVAZ21haWwuY29tIl19LCJzaWduX2luX3Byb3ZpZGVyIjoicGFzc3dvcmQifX0.GDEGIKMnJgMtdil8IKBvzfQBkkGWIX6Jx9xeyfaT0ETudKuV0a2htyL_r5l99EII1E5yfsiMnFo7TKE0ocQDUwXi4secxtN3xqQIhKIuhD-qv8RtoMFguP_zrmUg7OVktdQXZMprbRlDzknTR8hcKXA-Y_5f549HKviSfpRumRZqrMHf3vjHayZPalBoC333rxadGBaE-XIghO9CVyBwNbob0g3WhcaYUzLc3jORk3XfyVRvd6ud272PNbUHD6ZM40YXRbBIArj_5Uapfps9PhMJT_PkoardK4nR2vyshPX0kEiTECQxulOUVf03ErClfTgoXuWzKvcw2M9PI_a0EQ',
+    displayName: null,
+    email: 'genteelmagpie@gmail.com',
+    emailVerified: true,
+    phoneNumber: null,
+    photoURL: null,
+    isAnonymous: false,
+    tenantId: null,
+    providerData: [
+      {
+        providerId: 'password',
+        uid: 'genteelmagpie@gmail.com',
+        displayName: null,
+        email: 'genteelmagpie@gmail.com',
+        phoneNumber: null,
+        photoURL: null
+      }
+    ],
+    metadata: UserMetadata {
+      createdAt: '1698171255381',
+      lastLoginAt: '1698238632980',
+      lastSignInTime: 'Wed, 25 Oct 2023 12:57:12 GMT',
+      creationTime: 'Tue, 24 Oct 2023 18:14:15 GMT'
+    }
+  }

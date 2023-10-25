@@ -8,8 +8,8 @@ const { initializeApp } = require('firebase/app'); // Import the initializeApp f
 const firebaseConfig = require('./secrets/firebaseConfig'); // Path to your Firebase config file
 // Using CommonJS syntax to import necessary functions
 const { getAuth, createUserWithEmailAndPassword, sendEmailVerification, signInWithEmailAndPassword, sendPasswordResetEmail, signOut } = require('firebase/auth');
-const { getDatabase, ref, set } = require('firebase/database');
-const { formatDateTime, calculateTimeDifferenceInSeconds, findCategory } = require('./importantFunctions.js');
+const { getDatabase, ref, set, push } = require('firebase/database');
+const { dataSorter, toTitleCase } = require('./importantFunctions.js');
 
 
 
@@ -24,6 +24,14 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // Define the static file directory (public) before defining routes.
 app.use(express.static(path.join(__dirname, '/public')));
+
+
+// GLOBAL VARIABLES START
+
+let actualDuration, duration = -1;
+let startTime, endTime, subject, subCat = "";
+
+// GLOBAL VARIABLES END
 
 // THE GETTING OF WEB PAGES 
 
@@ -47,6 +55,11 @@ app.get('/timelogger', (req, res) => {
   res.sendFile(__dirname + '/timeLogger.html');
 });
 
+app.get('/success', (req, res) => {
+  // Display the login form
+  res.sendFile(__dirname + '/success.html');
+});
+
 app.get('/secrets', (req, res) => {
 
   const user = auth.currentUser; // Check if the user is logged in
@@ -54,9 +67,9 @@ app.get('/secrets', (req, res) => {
   if (user) {
     // User is signed in, serve the 'secrets.html' page
     res.sendFile(__dirname + '/secrets.html');
-    console.log(user)
-    console.log(user.uid)
-    writeUserData(user.uid, user.email)
+    // console.log(user)
+    // console.log(user.uid)
+    // writeUserData(user.uid, user.email)
   } else {
     // User is signed out, you can handle this as needed, e.g., redirect to the login page
     res.redirect('/');
@@ -124,7 +137,6 @@ app.post('/login', (req, res) => {
 
 app.post('/forgotpassword', (req, res) => {
   const email = req.body.email;
-  console.log(email);
   sendPasswordResetEmail(auth, email)
   .then(() => {
     console.log(" Reset Email has been sent.")
@@ -150,18 +162,61 @@ app.post('/logout', (req, res) => {
   });
 });
 
+// app.post('/timelogger', (req, res) => {
+  
+//   const obj = dataSorter(req.body)
+//   const stuts = DatabaseWrite(obj)
+//   console.log(stuts)
+//   if (stuts === true){
+//     res.send('<script>showSuccessMessageAndRedirect();</script>');
+//   }else{
+//     console.log(" Failed to successfully post your data.")
+//   }
+// });
+
+
+function DatabaseWrite(payload) {
+  return new Promise((resolve, reject) => {
+    const user = auth.currentUser; // Check if the user is logged in
+    if (user) {
+      const studyLogListRef = ref(db, `studyLogs/${user.uid}`);
+      const newPostRef = push(studyLogListRef);
+
+      set(newPostRef, payload)
+        .then(() => {
+          console.log('Data updated successfully');
+          resolve(true); // Resolve the Promise with true on success
+        })
+        .catch((error) => {
+          console.error('Data update error:', error);
+          reject(false); // Reject the Promise with false on error
+        });
+    } else {
+      console.log("User is not signed in.");
+      reject(false); // Reject the Promise if the user is not signed in
+    }
+  });
+}
+
 app.post('/timelogger', (req, res) => {
-  filePath = "D:\\GM\\Coding\\PythonProjects\\Jiffy\\assets\\subjects\\sub.json";
-  console.log(req.body)
-  console.log(findCategory(req.body.subjectName, filePath))
-  console.log(" One done.")
-  console.log(calculateTimeDifferenceInSeconds(req.body.startingTime, req.body.endTime))
-  console.log("Two Done.")
-  console.log(formatDateTime(req.body.startingTime))
-  console.log(formatDateTime(req.body.endTime))
-  console.log("Three Done.")
-  res.send(" We got it.")
+  const obj = dataSorter(req.body);
+
+  DatabaseWrite(obj)
+    .then((stuts) => {
+      console.log(stuts);
+      if (stuts === true) {
+        res.send('<script>showSuccessMessageAndRedirect();</script>');
+      } else {
+        console.log("Failed to successfully post your data.");
+        // Handle the error as needed
+      }
+    })
+    .catch((error) => {
+      console.error("Failed to successfully post your data:", error);
+      // Handle the error as needed
+    });
 });
+
 
 auth.onAuthStateChanged((user) => {
   if (user) {
@@ -174,12 +229,64 @@ auth.onAuthStateChanged((user) => {
   }
 });
 
+
+
+// DATABASE MANAGEMENT START
+
 function writeUserData(userId, email) {
   set(ref(db, 'users/' + userId), {
     email: email,
   });
   console.log(" Wrote the data.")
 }
+
+// function DatabaseWrite(payload){
+  
+//   const user = auth.currentUser; // Check if the user is logged in
+//   if (user) {
+//     // User is signed in, serve the 'secrets.html' page
+//     const studyLogListRef = ref(db, `studyLogs/${user.uid}`);
+//     const newPostRef = push(studyLogListRef)
+//     set(newPostRef, payload)
+//     .then(() => {
+//       console.log('Data updated successfully');
+//       return true;
+//     })
+//     .catch((error) => {
+//       console.error('Data update error:', error);
+//       return false;
+//     });
+// }};
+
+
+// function DatabaseWrite(payload) {
+//   return new Promise((resolve, reject) => {
+//     const user = auth.currentUser; // Check if the user is logged in
+//     if (user) {
+//       const studyLogListRef = ref(db, `studyLogs/${user.uid}`);
+//       const newPostRef = push(studyLogListRef);
+
+//       set(newPostRef, payload)
+//         .then(() => {
+//           console.log('Data updated successfully');
+//           resolve(true); // Resolve the Promise with true on success
+//         })
+//         .catch((error) => {
+//           console.error('Data update error:', error);
+//           reject(false); // Reject the Promise with false on error
+//         });
+//     } else {
+//       console.log("User is not signed in.");
+//       reject(false); // Reject the Promise if the user is not signed in
+//     }
+//   });
+// }
+
+
+
+// DATABASE MANAGEMENT END
+
+
 
 
 app.listen(3000, () => {

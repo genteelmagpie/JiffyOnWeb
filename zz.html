@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Animated Gradient Text</title>
+  <style>
+    @keyframes textGradientAnimation {
+      0% {
+        background-position: 0% 50%;
+      }
+      100% {
+        background-position: 100% 50%;
+      }
+    }
+
+    .animated-text {
+      font-size: 48px;
+      font-weight: bold;
+      background: linear-gradient(45deg, #f06, #3c9);
+      background-size: 200% 100%;
+      color: transparent;
+      background-clip: text;
+      text-fill-color: transparent;
+      animation: textGradientAnimation 3s linear infinite;
+    }
+
+    /* Additional styling for the container */
+    body {
+      background: #f0f0f0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="animated-text">Animated Gradient Text</div>
+</body>
+</html>
