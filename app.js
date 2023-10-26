@@ -74,7 +74,7 @@ app.get("/forgotpassword(.html)?", (req, res) => {
 app.get("/timelogger(.html)?", (req, res) => {
   console.log(userAlive);
   if (userAlive) {
-    serveHTMLFile(req, res, "timelogger.html");
+    serveHTMLFile(req, res, "timeLogger.html");
   } else {
     res.send(
       '<script>alert("You are not authorized to view this page.!"); window.location.href = "/";</script>'
