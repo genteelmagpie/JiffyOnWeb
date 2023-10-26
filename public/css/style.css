@@ -87,11 +87,14 @@ h1 {
 }
 .loginElemets p a{
   color: rgb(206, 208, 214);
+  cursor: pointer;
   
 }
 .loginElemets p a:hover{
   color: white;
   text-decoration: underline;
+  cursor: pointer;
+
 }
 input {
   width: 100%;
