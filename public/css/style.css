@@ -102,25 +102,39 @@ input {
 
 /* Disable bootstrap functions here.  */
 
-.btn{
+.btn {
   padding: 0;
   padding: 0 0 0 1%;
   margin: 3% 0 3% 0;
-  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.15), 0 6px 20px 0 rgba(0,0,0,0.19);
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.15), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  transition: transform 0.2s; /* Add a transition on the transform property */
 }
 
+.btn {
+  padding: 0;
+  padding: 0 0 0 1%;
+  margin: 3% 0 3% 0;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.15), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  transition: transform 6s; /* Add a transition on the transform property */
+}
 
-.btn-primary{
-  background-color: #6c6076;
+.btn:hover {
+  transform: scaleX(0.6); /* Shrink the button's width on hover */
+}
+
+.btn-primary {
+  background-color: #54465e;
   border-color: #3d3248;
   width: 100%;
 }
 
-.btn-primary:hover{
+.btn-primary:hover {
   background-color: #5e4e6d;
   border-color: #3c3048;
-  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.15), 0 6px 20px 0 rgba(0,0,0,0.19);
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.15), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
 }
+
 
 .btn-primary.focus, .btn-primary:focus {
 
