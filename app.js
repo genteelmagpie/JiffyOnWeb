@@ -2,16 +2,30 @@
 
 const express = require('express');
 const app = express();
+require('dotenv').config();
 const bodyParser = require('body-parser');
 const path = require('path'); // Import the 'path' module to handle file paths.
 const { initializeApp } = require('firebase/app'); // Import the initializeApp function
-const firebaseConfig = require('./secrets/firebaseConfig'); // Path to your Firebase config file
 // Using CommonJS syntax to import necessary functions
-const { getAuth, createUserWithEmailAndPassword, sendEmailVerification, signInWithEmailAndPassword, sendPasswordResetEmail, signOut } = require('firebase/auth');
+const { getAuth, createUserWithEmailAndPassword, sendEmailVerification, signInWithEmailAndPassword, sendPasswordResetEmail, updateProfile, signOut } = require('firebase/auth');
 const { getDatabase, ref, set, push } = require('firebase/database');
-const { dataSorter, toTitleCase } = require('./importantFunctions.js');
+const { dataSorter, toTitleCase } = require('./public/importantFunctions.js');
+
+// GLOBAL VARIABLES START
+
+const firebaseConfig = {
+  apiKey: process.env.FIREBASE_API_KEY,
+  authDomain: process.env.FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.FIREBASE_PROJECT_ID,
+  storageBucket: process.env.FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.FIREBASE_APP_ID,
+};
 
 
+const port = 5000
+
+// GLOBAL VARIABLES END
 
 // Initialize Firebase
 const firebaseApp = initializeApp(firebaseConfig);
@@ -26,38 +40,38 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, '/public')));
 
 
-// GLOBAL VARIABLES START
-
-let actualDuration, duration = -1;
-let startTime, endTime, subject, subCat = "";
-
-// GLOBAL VARIABLES END
-
 // THE GETTING OF WEB PAGES 
 
+// Function to serve HTML files from the "public" folder
+function serveHTMLFile(req, res, fileName) {
+  const filePath = path.join(__dirname, 'public', fileName);
+  res.sendFile(filePath);
+}
+
+
 app.get('/', (req, res) => {
-  // Display the login form
-  res.sendFile(__dirname + '/index.html');
+
+  serveHTMLFile(req, res, 'index.html');
 });
 
 app.get('/register', (req, res) => {
-  // Display the login form
-  res.sendFile(__dirname + '/signUpFirebase.html');
+
+  serveHTMLFile(req, res, 'signUpFirebase.html');
 });
 
 app.get('/forgotpassword', (req, res) => {
-  // Display the login form
-  res.sendFile(__dirname + '/forgotPassword.html');
+
+  serveHTMLFile(req, res, 'forgotPassword.html');
 });
 
 app.get('/timelogger', (req, res) => {
-  // Display the login form
-  res.sendFile(__dirname + '/timeLogger.html');
+
+  serveHTMLFile(req, res, 'timeLogger.html');
 });
 
 app.get('/success', (req, res) => {
-  // Display the login form
-  res.sendFile(__dirname + '/success.html');
+
+  serveHTMLFile(req, res, 'success.html');
 });
 
 app.get('/logout', (req, res) => {
@@ -71,39 +85,91 @@ app.get('/logout', (req, res) => {
 
 // THE POSTING ON WEB PAGES 
 
+// app.post('/register', (req, res) => {
+//   // Access the form data
+//   const email = req.body.email;
+//   const password = req.body.password;
+
+//   createUserWithEmailAndPassword(auth, email, password)
+//   .then((userCredential) => {
+//     // User signed up successfully
+//     const user = userCredential.user;
+
+//     console.log(user)
+//     console.log(" Creation of the new user is successful.")
+
+//     sendEmailVerification(user)
+//     .then(() => {
+//       console.log(" Email verification sent.")
+//     })
+//     .catch((error) => {
+//       console.error('Error sending email verification:', error);
+//     });
+
+//     // Send an alert to the client and stay on the current page
+//     res.send('<script>alert("Account Creation Successful. Welcome!"); window.location.href = "/";</script>');
+//   })
+//   .catch((error) => {
+//     const errorCode = error.code;
+//     const errorMessage = error.message;
+//     console.log(errorMessage)
+//     console.log(errorCode)
+//     const alertMessage = `<script>alert("Account Creation Failed. Sorry! The error code was: ${errorCode}"); window.location.href = "/register";</script>`;
+//     res.send(alertMessage);
+//     // res.redirect('/register');
+//   });
+
+// });
+
+
 app.post('/register', (req, res) => {
   // Access the form data
   const email = req.body.email;
   const password = req.body.password;
+  const displayName = req.body.displayName.trim();
 
+  // Register the user using Firebase client SDK
   createUserWithEmailAndPassword(auth, email, password)
-  .then((userCredential) => {
-    // User signed up successfully
-    const user = userCredential.user;
-    console.log(user)
-    console.log(" Creation of the new user is successful.")
+    .then((userCredential) => {
+      // User signed up successfully
+      const user = userCredential.user;
 
-    sendEmailVerification(user)
-    .then(() => {
-      console.log(" Email verification sent.")
+      // Set the display name (assuming displayName is in the request body)
+      if (displayName) {
+        updateProfile(auth.currentUser, {
+          displayName: displayName
+        })
+        .then(() => {
+          console.log("User's display name set to:", displayName);
+        })
+        .catch((error) => {
+          console.error('Error setting display name:', error);
+        });
+      }
+
+      console.log("Creation of the new user is successful.");
+
+      sendEmailVerification(user)
+        .then(() => {
+          console.log("Email verification sent.");
+        })
+        .catch((error) => {
+          console.error('Error sending email verification:', error);
+        });
+
+      // Send an alert to the client and stay on the current page
+      res.send('<script>alert("Account Creation Successful. Welcome!"); window.location.href = "/";</script>');
     })
     .catch((error) => {
-      console.error('Error sending email verification:', error);
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      console.log(errorMessage);
+      console.log(errorCode);
+      const alertMessage = `<script>alert("Account Creation Failed. Sorry! The error code was: ${errorCode}"); window.location.href = "/register";</script>`;
+      res.send(alertMessage);
     });
-
-    // Send an alert to the client and stay on the current page
-    res.send('<script>alert("Account Creation Successful. Welcome!"); window.location.href = "/";</script>');
-  })
-  .catch((error) => {
-    const errorCode = error.code;
-    const errorMessage = error.message;
-    console.log(errorMessage)
-    console.log(error)
-  });
-
-
-
 });
+
 
 app.post('/login', (req, res) => {
 
@@ -114,7 +180,7 @@ app.post('/login', (req, res) => {
     .then((userCredential) => {
       // Signed in 
       const user = userCredential.user;
-      // console.log(user)
+      console.log(user)
       console.log("Login of the user is successful.");
       res.redirect('/timelogger')
     })
@@ -184,6 +250,7 @@ auth.onAuthStateChanged((user) => {
   } else {
     // User is signed out
     console.log('User is signed out');
+    app.get('/')
   }
 });
 
@@ -227,7 +294,7 @@ function DatabaseWrite(payload) {
 
 
 
-
-app.listen(3000, () => {
-  console.log('Server is running on port 3000');
+// Listen on port 5000
+app.listen(process.env.port || port, () => {
+  console.log(`Server is running on port ${port}`);
 });

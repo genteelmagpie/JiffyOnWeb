@@ -77,7 +77,7 @@ function toTitleCase(str) {
 
 function dataSorter(object){
 
-  const filePath = path.join(__dirname, 'public', 'assets', 'sub.json');
+  const filePath = path.join(__dirname, 'assets', 'sub.json');
   const subjectName = object.subjectName.trim();
 
   subject = toTitleCase(subjectName);
