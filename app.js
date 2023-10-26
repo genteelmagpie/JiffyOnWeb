@@ -22,7 +22,9 @@ const firebaseConfig = {
   appId: process.env.FIREBASE_APP_ID,
 };
 
-
+// Access the allowed emails as an array
+const allowedEmails = process.env.ALLOWED_EMAILS.split(',');
+let user;
 const port = 5000
 
 // GLOBAL VARIABLES END
@@ -44,6 +46,7 @@ app.use(express.static(path.join(__dirname, '/public')));
 
 // Function to serve HTML files from the "public" folder
 function serveHTMLFile(req, res, fileName) {
+
   const filePath = path.join(__dirname, 'public', fileName);
   res.sendFile(filePath);
 }
@@ -54,19 +57,14 @@ app.get('/', (req, res) => {
   serveHTMLFile(req, res, 'index.html');
 });
 
-app.get('/register', (req, res) => {
+app.get('/register(.html)?', (req, res) => {
 
   serveHTMLFile(req, res, 'signUpFirebase.html');
 });
 
-app.get('/forgotpassword', (req, res) => {
+app.get('/forgotpassword(.html)?', (req, res) => {
 
   serveHTMLFile(req, res, 'forgotPassword.html');
-});
-
-app.get('/timelogger', (req, res) => {
-
-  serveHTMLFile(req, res, 'timeLogger.html');
 });
 
 app.get('/success', (req, res) => {
@@ -83,13 +81,15 @@ app.get('/logout', (req, res) => {
   });
 });
 
+app.use((req, res) => {
+  serveHTMLFile(req, res, 'error404.html');
+});
+
+
 // THE POSTING ON WEB PAGES 
 
 
 app.post('/register', (req, res) => {
-
-  // Access the allowed emails as an array
-  const allowedEmails = process.env.ALLOWED_EMAILS.split(',');
 
   // Access the form data
   const email = req.body.email;
@@ -102,7 +102,7 @@ app.post('/register', (req, res) => {
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         // User signed up successfully
-        const user = userCredential.user;
+        user = userCredential.user;
 
         // Set the display name (assuming displayName is in the request body)
         if (displayName) {
@@ -148,40 +148,50 @@ app.post('/register', (req, res) => {
 app.post('/login', (req, res) => {
 
   const email = req.body.email;
-  const password = req.body.password;
+  if (allowedEmails.includes(email)) {
+    const email = req.body.email;
+    const password = req.body.password;
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        // Signed in 
+        user = userCredential.user;
+        console.log("Login of the user is successful.");
+        res.redirect('/timelogger')
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(errorMessage);
+        console.log(error);
+      });
+    } else {
+      // Email is not in the allowed list, reject the registration
+      res.send('<script>alert("Sorry, You were denied. Please contact the developer."); window.location.href = "/";</script>');
+    }
+});
 
-  signInWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-      // Signed in 
-      const user = userCredential.user;
-      // console.log(user)
-      console.log("Login of the user is successful.");
-      res.redirect('/timelogger')
+app.post('/forgotpassword', (req, res) => {
+  
+  const email = req.body.email;
+  if (allowedEmails.includes(email)) {
+    const email = req.body.email;
+    sendPasswordResetEmail(auth, email)
+    .then(() => {
+      console.log(" Reset Email has been sent.")
+      res.send('<script>alert("Reset Email has been sent!"); window.location.href = "/";</script>');
     })
     .catch((error) => {
       const errorCode = error.code;
       const errorMessage = error.message;
-      console.log(errorMessage);
-      console.log(error);
+      console.log(" Reset Email could not be sent.")
+      console.log(error)
+      // res.send('<script>alert("Sign Out Failed.!"); window.location.href = "/";</script>');
+      res.send('<script>alert("Reset Email could not be sent!")</script>');
     });
-});
-
-app.post('/forgotpassword', (req, res) => {
-  const email = req.body.email;
-  sendPasswordResetEmail(auth, email)
-  .then(() => {
-    console.log(" Reset Email has been sent.")
-    res.send('<script>alert("Reset Email has been sent!"); window.location.href = "/";</script>');
-  })
-  .catch((error) => {
-    const errorCode = error.code;
-    const errorMessage = error.message;
-    console.log(" Reset Email could not be sent.")
-    console.log(error)
-    // res.send('<script>alert("Sign Out Failed.!"); window.location.href = "/";</script>');
-    res.send('<script>alert("Reset Email could not be sent!")</script>');
-    
-  });
+  } else {
+    // Email is not in the allowed list, reject the registration
+    res.send('<script>alert("Sorry, You were denied. Please contact the developer."); window.location.href = "/";</script>');
+  }
 });
 
 app.post('/logout', (req, res) => {
@@ -241,7 +251,7 @@ function writeUserData(userId, email) {
 
 function DatabaseWrite(payload) {
   return new Promise((resolve, reject) => {
-    const user = auth.currentUser; // Check if the user is logged in
+    // const user = auth.currentUser; // Check if the user is logged in
     if (user) {
       const studyLogListRef = ref(db, `studyLogs/${user.uid}`);
       const newPostRef = push(studyLogListRef);

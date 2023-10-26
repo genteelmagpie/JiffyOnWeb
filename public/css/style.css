@@ -102,20 +102,13 @@ input {
 
 /* Disable bootstrap functions here.  */
 
-.btn {
-  padding: 0;
-  padding: 0 0 0 1%;
-  margin: 3% 0 3% 0;
-  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.15), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  transition: transform 0.2s; /* Add a transition on the transform property */
-}
 
 .btn {
   padding: 0;
   padding: 0 0 0 1%;
   margin: 3% 0 3% 0;
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.15), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  transition: transform 6s; /* Add a transition on the transform property */
+  transition: transform 3s; /* Add a transition on the transform property */
 }
 
 .btn:hover {
