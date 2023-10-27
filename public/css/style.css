@@ -42,7 +42,7 @@ h1 {
   font-size: 1rem;
 }
 
-#passwordMatchError, #displayNameError{
+#passwordMatchError, #displayNameError, #invalidEmailError, #invalidPasswordError, #emailError{
   text-align: center;
   color: red;
 }
@@ -54,7 +54,7 @@ h1 {
     border: 1px solid #ccc;
     width: 60%; */
     margin: 0 auto;
-    padding: 2% 0 2% 0;
+    padding: 5% 0 5% 0;
     border: 1px solid #ccc;
     position: absolute;
     top: 50%;
