@@ -158,6 +158,8 @@ app.post("/register", (req, res) => {
   }
 });
 
+// Function to handle user login
+
 app.post("/login", (req, res) => {
   const email = req.body.email;
   if (allowedEmails.includes(email)) {
@@ -168,7 +170,11 @@ app.post("/login", (req, res) => {
         // Signed in
         user = userCredential.user;
         console.log("Login of the user is successful.");
-        res.redirect("/timelogger");
+        // Introduce a delay before redirecting to allow time for onAuthStateChanged to trigger
+        setTimeout(() => {
+          // Redirect to the desired page
+          window.location.href = "/timelogger";
+        }, 2000); // Adjust the delay time as needed
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -183,6 +189,32 @@ app.post("/login", (req, res) => {
     );
   }
 });
+
+// app.post("/login", (req, res) => {
+//   const email = req.body.email;
+//   if (allowedEmails.includes(email)) {
+//     const email = req.body.email;
+//     const password = req.body.password;
+//     signInWithEmailAndPassword(auth, email, password)
+//       .then((userCredential) => {
+//         // Signed in
+//         user = userCredential.user;
+//         console.log("Login of the user is successful.");
+//         res.redirect("/timelogger");
+//       })
+//       .catch((error) => {
+//         const errorCode = error.code;
+//         const errorMessage = error.message;
+//         console.log(errorMessage);
+//         console.log(error);
+//       });
+//   } else {
+//     // Email is not in the allowed list, reject the registration
+//     res.send(
+//       '<script>alert("Sorry, You were denied. Please contact the developer."); window.location.href = "/";</script>'
+//     );
+//   }
+// });
 
 app.post("/forgotpassword", (req, res) => {
   const email = req.body.email;
