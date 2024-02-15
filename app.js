@@ -173,7 +173,7 @@ app.post("/login", (req, res) => {
         // Introduce a delay before redirecting to allow time for onAuthStateChanged to trigger
         setTimeout(() => {
           // Redirect to the desired page
-          window.location.href = "/timelogger";
+          res.redirect("/timelogger");
         }, 2000); // Adjust the delay time as needed
       })
       .catch((error) => {
