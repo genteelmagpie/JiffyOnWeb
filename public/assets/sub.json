@@ -1,7 +1,8 @@
 {
     "subjects": {
         "English": "Grammar, English Grammar, Vocabulary, English Vocabulary, Reading Comprehension, Critical Reasoning, Essay Writing",
-        "Mathematics": "Mathematics, Mathematics Competition, Mathematics Catch Up, Speed Mathematics, Statistics, Integerated Reasoning",
+        "Mathematics": "Mathematics, Mathematics Competition, Mathematics (Catch Up), Speed Mathematics",
+        "Data Insights": "Statistics, Integerated Reasoning, Data Interpretation, Data Insights",
         "Social Sciences": "History, Civics, Geography, Polity, Political Science, Sociology",
         "Business Sciences": "Economics, Financial Accounting, Labour Law",
         "Science": "Physics, Chemistry, Biology",
@@ -9,17 +10,17 @@
         "Computer": "Python, Photoshop, Typing Practice, Computer Science, Web Development, Android Development",
         "Entertainment": "Music Listening, Music Sorting, Music, Movie",
         "Research": "Research",
-        "Financial Upkeep": "Credit Card, Credit Card Analysis, PayTM, AmazonPayCC, SBI CC",
-        "General Well Being": "Exercise, Running, Walking"
+        "Financial Upkeep": "Credit Card, Credit Card Analysis, PayTM, AmazonPayCC, SBI CC, Bills Analysis",
+        "Well Being": "Exercise, Running, Walking, Meditation"
     },
     "projects": {
-        "B School Prep": "Grammar, English Grammar, Vocabulary, English Vocabulary, Reading Comprehension, Critical Reasoning, Essay Writing, Mathematics, Mathematics Competition, Mathematics Catch Up, Speed Mathematics, Integerated Reasoning, German, Spanish, Sanskrit, Dutch",
-        "UPSC And StatePSC": "History, Civics, Geography, Polity, Political Science, Sociology, Physics, Chemistry, Biology, Statistics",
-        "Master of Business Administration": "Economics, Financial Accounting, Labour Law",
+        "B School Prep": "Grammar, English Grammar, Vocabulary, English Vocabulary, Reading Comprehension, Critical Reasoning, Essay Writing, Mathematics, Mathematics Competition, Mathematics (Catch Up), Speed Mathematics, German, Spanish, Sanskrit, Dutch",
+        "UPSC And StatePSC": "History, Civics, Geography, Polity, Political Science, Sociology, Physics, Chemistry, Biology, Labour Law",
+        "Business Administration": "Economics, Financial Accounting, Statistics, Integerated Reasoning, Data Interpretation, Data Insights",
         "Fastlane Prep": "Python, Photoshop, Typing Practice, Computer Science, Web Development, Android Development",
         "Entertainment": "Music Listening, Music Sorting, Music, Movie",
         "Research": "Research",
-        "Financial Upkeep": "Credit Card, Credit Card Analysis, PayTM, AmazonPayCC, SBI CC",
-        "General Well Being": "Exercise, Running, Walking"
+        "Financial Upkeep": "Credit Card, Credit Card Analysis, PayTM, AmazonPayCC, SBI CC, Bills Analysis",
+        "Well Being": "Exercise, Running, Walking, Meditation"
     }
 }
