@@ -14,13 +14,14 @@
         "Research": "Research",
         "Financial Upkeep": "Credit Card, Credit Card Analysis, PayTM, AmazonPayCC, SBI CC, Bills Analysis, Bills Payment",
         "Well Being": "Exercise, Running, Walking, Meditation, Digital Cleaning",
-        "Digital Asset Management": "Disk Cleanup, File Optimization, Digital Decluttering, Data Archiving, Storage Optimization, Digital Downloads"
+        "Digital Asset Management": "Disk Cleanup, File Optimization, Digital Decluttering, Data Archiving, Storage Optimization, Digital Downloads",
+        "Device Management": "Mobile Device Maintenance, Mobile Device Repair, Computer Repair, Device Repair"
     },
     "projects": {
         "B School Prep": "Grammar, English Grammar, Vocabulary, English Vocabulary, Reading Comprehension, Critical Reasoning, Essay Writing, Mathematics, Mathematics Competition, Mathematics (Catch Up), Speed Mathematics, German, Spanish, Sanskrit, Dutch",
         "UPSC And StatePSC": "History, Civics, Geography, Polity, Political Science, Sociology, Physics, Chemistry, Biology, Labour Law",
         "Business Administration": "Economics, Financial Accounting, Statistics, Integerated Reasoning, Data Interpretation, Data Insights, Data Gathering, Data Manipulation, Business Analysis",
-        "Computer Administration": "Disk Cleanup, File Optimization, Digital Decluttering, Data Archiving, Storage Optimization, Digital Downloads",
+        "Computer Administration": "Disk Cleanup, File Optimization, Digital Decluttering, Data Archiving, Storage Optimization, Digital Downloads, Mobile Device Maintenance, Mobile Device Repair, Computer Repair, Device Repair",
         "Fastlane Prep": "Python, Computer Science, Web Development, Android Development, Data Science, Photoshop, Typing Practice, Photo Editing, Video Editing, Scripts Management",
         "Entertainment": "Music Listening, Music Sorting, Music, Movie, Youtube, Youtube Documentary",
         "Research": "Research",
