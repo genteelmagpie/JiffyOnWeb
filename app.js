@@ -98,6 +98,13 @@ app.get("/logout", (req, res) => {
     });
 });
 
+
+// Health check endpoint
+app.get("/myhealth", (req, res) => {
+  res.status(200).send("OK");
+});
+
+
 // THE POSTING ON WEB PAGES
 
 app.post("/register", (req, res) => {
