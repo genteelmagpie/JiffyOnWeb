@@ -4,7 +4,7 @@
         "Mathematics": "Mathematics, Mathematics Competition, Mathematics (Catch Up), Speed Mathematics",
         "Data Insights": "Statistics, Integerated Reasoning, Data Interpretation, Data Insights",
         "Social Sciences": "History, Civics, Geography, Polity, Political Science, Sociology",
-        "Business Sciences": "Economics, Financial Accounting, Labour Law",
+        "Business Sciences": "Economics, Financial Accounting, Labour Law, Financial Markets",
         "Business Analysis": "Data Gathering, Data Manipulation, Business Analysis",
         "Science": "Physics, Chemistry, Biology",
         "Foreign Language Learning": "German, Spanish, Sanskrit, Dutch",
@@ -19,7 +19,7 @@
     },
     "projects": {
         "B School Prep": "Grammar, English Grammar, Vocabulary, English Vocabulary, Reading Comprehension, Critical Reasoning, Essay Writing, Mathematics, Mathematics Competition, Mathematics (Catch Up), Speed Mathematics, German, Spanish, Sanskrit, Dutch",
-        "UPSC And StatePSC": "History, Civics, Geography, Polity, Political Science, Sociology, Physics, Chemistry, Biology, Labour Law",
+        "UPSC And StatePSC": "History, Civics, Geography, Polity, Political Science, Sociology, Physics, Chemistry, Biology, Labour Law, Financial Markets",
         "Business Administration": "Economics, Financial Accounting, Statistics, Integerated Reasoning, Data Interpretation, Data Insights, Data Gathering, Data Manipulation, Business Analysis",
         "Computer Administration": "Disk Cleanup, File Optimization, Digital Decluttering, Data Archiving, Storage Optimization, Digital Downloads, Mobile Device Maintenance, Mobile Device Repair, Computer Repair, Device Repair",
         "Fastlane Prep": "Python, Computer Science, Web Development, Android Development, Data Science, Data Analysis, Data Analysis Project, Photoshop, Typing Practice, Photo Editing, Video Editing, Scripts Management",
