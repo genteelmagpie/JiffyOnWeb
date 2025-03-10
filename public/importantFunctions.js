@@ -88,6 +88,7 @@ function dataSorter(object){
   resp = findCategory(subject, filePath);
   subCat = resp.subjectCatg;
   project = resp.project;
+  topic = toTitleCase(topic);
   const newObject = {
     actualDuration: actualDuration,
     duration: duration,
@@ -96,6 +97,7 @@ function dataSorter(object){
     startTime: startTime,
     subCat: subCat,
     subject: subject,
+    topic: topic,
   }
 
   return newObject;
