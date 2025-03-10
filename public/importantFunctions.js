@@ -75,20 +75,21 @@ function toTitleCase(str) {
   });
 }
 
-function dataSorter(object){
 
+function dataSorter(object) {
   const filePath = path.join(__dirname, 'assets', 'sub.json');
   const subjectName = object.subjectName.trim();
+  const topic = object.topic ? toTitleCase(object.topic.trim()) : 'NA'; // Define topic safely
 
-  subject = toTitleCase(subjectName);
-  actualDuration = calculateTimeDifferenceInSeconds(object.startingTime, object.endTime);
-  duration = actualDuration;
-  startTime = formatDateTime(object.startingTime);
-  endTime = formatDateTime(object.endTime);
-  resp = findCategory(subject, filePath);
-  subCat = resp.subjectCatg;
-  project = resp.project;
-  topic = toTitleCase(topic);
+  const subject = toTitleCase(subjectName);
+  const actualDuration = calculateTimeDifferenceInSeconds(object.startingTime, object.endTime);
+  const duration = actualDuration;
+  const startTime = formatDateTime(object.startingTime);
+  const endTime = formatDateTime(object.endTime);
+  const resp = findCategory(subject, filePath);
+  const subCat = resp.subjectCatg;
+  const project = resp.project;
+
   const newObject = {
     actualDuration: actualDuration,
     duration: duration,
@@ -97,11 +98,41 @@ function dataSorter(object){
     startTime: startTime,
     subCat: subCat,
     subject: subject,
-    topic: topic,
-  }
+    topic: topic, // Now topic is always defined
+  };
 
   return newObject;
 }
+
+
+
+// function dataSorter(object){
+
+//   const filePath = path.join(__dirname, 'assets', 'sub.json');
+//   const subjectName = object.subjectName.trim();
+
+//   subject = toTitleCase(subjectName);
+//   actualDuration = calculateTimeDifferenceInSeconds(object.startingTime, object.endTime);
+//   duration = actualDuration;
+//   startTime = formatDateTime(object.startingTime);
+//   endTime = formatDateTime(object.endTime);
+//   resp = findCategory(subject, filePath);
+//   subCat = resp.subjectCatg;
+//   project = resp.project;
+//   topic = toTitleCase(topic);
+//   const newObject = {
+//     actualDuration: actualDuration,
+//     duration: duration,
+//     endTime: endTime,
+//     project: project,
+//     startTime: startTime,
+//     subCat: subCat,
+//     subject: subject,
+//     topic: topic,
+//   }
+
+//   return newObject;
+// }
 
 module.exports = {
   toTitleCase,
