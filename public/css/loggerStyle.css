@@ -29,7 +29,7 @@ h1{
     font-weight: 800;
     padding-bottom: 3%;
 }
-#startingTime, #endTime, #subjectName, #loginButtons{
+#topic, #startingTime, #endTime, #subjectName, #loginButtons{
     display: block;
     padding-left: 1%;
     margin: 0 auto;
