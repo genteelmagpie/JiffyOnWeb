@@ -2,7 +2,7 @@
     "subjects": {
         "English": "Grammar, English Grammar, Vocabulary, English Vocabulary, Reading Comprehension, Critical Reasoning, Essay Writing",
         "Mathematics": "Mathematics, Mathematics Competition, Mathematics (Catch Up), Speed Mathematics",
-        "Data Insights": "Statistics, Reasoning, Integerated Reasoning, Data Interpretation, Data Insights",
+        "Data Insights": "Statistics, Reasoning, Integrated Reasoning, Data Interpretation, Data Insights",
         "Social Sciences": "History, Civics, Geography, Polity, Political Science, Sociology, General Knowledge",
         "Business Sciences": "Economics, Financial Accounting, Labour Law, Financial Markets",
         "Business Analysis": "Data Gathering, Data Manipulation, Business Analysis",
@@ -10,22 +10,28 @@
         "Foreign Language Learning": "German, Spanish, Sanskrit, Dutch",
         "Computer Science": "Python, Computer Science, Web Development, Kotlin, Android Development, Data Science, Data Analysis, Data Analysis Project",
         "Entertainment": "Music Listening, Music Sorting, Music, Movie, Youtube, Youtube Documentary",
-        "Computer (General)": "Photoshop, Typing Practice, Photo Editing, Video Editing, Scripts Management",
+        "Computer (General)": "Photoshop, Typing Practice, Photo Editing, Video Editing, Scripts Management, Data Syncing",
         "Research": "Research",
         "Financial Upkeep": "Credit Card Bill Analysis, PayTM Expenses Analysis, AmazonPayCC Bill Analysis, SBI CC Bill Analysis, Bills Analysis, Bills Payment",
-        "Well Being": "Exercise, Running, Walking, Meditation, Digital Cleaning",
+        "Well Being": "Exercise, Walking, Jogging, Running, Meditation",
         "Digital Asset Management": "Disk Cleanup, File Optimization, Digital Decluttering, Data Archiving, Storage Optimization, Digital Downloads",
-        "Device Management": "Mobile Device Maintenance, Mobile Device Repair, Computer Repair, Device Repair"
+        "Device Management": "Mobile Device Maintenance, Mobile Device Repair, Computer Repair, Device Repair",
+        "Recharge": "Sleeping, Family Time, Breakfast, Lunch, Dinner, Snacks",
+        "Maintenance": "Brushing, Bathing, Bathroom Routine, Bathroom Activities, Skin Care, Spa Treatment, Barber, Oil Massage",
+        "Basic ToDos": "Grocery Shopping, Vegetable Market, Driving, Shopping"
     },
     "projects": {
         "B School Prep": "Grammar, English Grammar, Vocabulary, English Vocabulary, Reading Comprehension, Critical Reasoning, Essay Writing, Mathematics, Mathematics Competition, Mathematics (Catch Up), Speed Mathematics, German, Spanish, Sanskrit, Dutch",
         "UPSC, StatePSC and Other Govt. Exams": "History, Civics, Geography, Polity, Political Science, Sociology, Physics, Chemistry, Biology, Labour Law, Financial Markets, Reasoning, General Knowledge",
-        "Business Administration": "Economics, Financial Accounting, Statistics, Integerated Reasoning, Data Interpretation, Data Insights, Data Gathering, Data Manipulation, Business Analysis",
+        "Business Administration": "Economics, Financial Accounting, Statistics, Integrated Reasoning, Data Interpretation, Data Insights, Data Gathering, Data Manipulation, Business Analysis",
         "Computer Administration": "Disk Cleanup, File Optimization, Digital Decluttering, Data Archiving, Storage Optimization, Digital Downloads, Mobile Device Maintenance, Mobile Device Repair, Computer Repair, Device Repair",
-        "Fastlane Prep": "Python, Computer Science, Web Development, Kotlin, Android Development, Data Science, Data Analysis, Data Analysis Project, Photoshop, Typing Practice, Photo Editing, Video Editing, Scripts Management",
+        "Fastlane Prep": "Python, Computer Science, Web Development, Kotlin, Android Development, Data Science, Data Analysis, Data Analysis Project, Photoshop, Typing Practice, Photo Editing, Video Editing, Scripts Management, Data Syncing",
         "Entertainment": "Music Listening, Music Sorting, Music, Movie, Youtube, Youtube Documentary",
         "Research": "Research",
         "Financial Upkeep": "Credit Card Bill Analysis, PayTM Expenses Analysis, AmazonPayCC Bill Analysis, SBI CC Bill Analysis, Bills Analysis, Bills Payment",
-        "Well Being": "Exercise, Running, Walking, Meditation"
+        "Well Being": "Exercise, Walking, Jogging, Running, Meditation",
+        "Recharge": "Sleeping, Family Time, Breakfast, Lunch, Dinner, Snacks",
+        "Maintenance":  "Brushing, Bathing, Bathroom Routine, Bathroom Activities, Skin Care, Spa Treatment, Barber, Oil Massage",
+        "Basic ToDos": "Grocery Shopping, Vegetable Market, Driving, Shopping"
     }
 }
